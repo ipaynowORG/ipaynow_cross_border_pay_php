@@ -366,7 +366,7 @@ responseCode=A001&tn=weixin%253A%252F%252Fwxpay%252Fbizpayurl%253Fpr%253DqcpVAy0
 现在支付的服务端异步发起：通讯方式：HTTP POST
 
 |字段名称|字段 Key|格式|必填|备注|
-|----|----|----|----|----|----|----|
+|----|----|----|----|----|
 |功能码|funcode|String(4)|Y|定值：N001|
 |商户应用唯一标识|appId|String(1,40)|Y||
 |商户订单号|mhtOrderNo|String(1,40)|Y||

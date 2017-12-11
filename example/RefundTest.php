@@ -8,6 +8,6 @@
 
 require_once "../service/RefundService.php";
 
-//print RefundService::refund("xxxxxxxxxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","eY85WUOEoSP1X","201711008","1","php退款测试");
+//print RefundService::refund("1512462141589110","8yxER8gduXkA0tRKbkRv9YlPgN9y6Epb","c20130101712081801070511837","201711008","0.1","php退款测试");
 
-//print RefundService::refundQuery("xxxxxxxxxxxxx","xxxxxxxxxxxxxxxxxxxx","20171108",true);
+print RefundService::refundQuery("1512462141589110","8yxER8gduXkA0tRKbkRv9YlPgN9y6Epb","1512462141589110",true);

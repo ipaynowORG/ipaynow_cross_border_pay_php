@@ -87,93 +87,96 @@
 
 <h4 id='2.1'> 2.1 跨境聚合交易API </h4>
 
-- 下单接口
-    * TradeService.php  
-       <h5 id='2.1.1'></h5>
+- 下单接口 TradeService.php  
+    
+<h5 id='2.1.1'></h5>
+      
+- 微信PC扫码支付
        
-       - 微信PC扫码支付
-       
-              /**
-              * 微信PC扫码
-               * @param $appId 应用Id
-               * @param $appKey 应用秘钥
-               * @param $mhtOrderNo 订单号
-               * @param $mhtOrderName 订单名
-               * @param $mhtOrderDetail 订单详细
-               * @param $mhtOrderAmt 订单金额单位分
-               * @param $mhtCurrencyType  商户订单币种类型
-               * @param $notifyUrl  商户后台通知URL
-               * @param $detail 商户商品列表
-               * @param $version 商品版本
-               * @param $frontNotifyUrl 商户前台通知URL
-               * @param $isTest 是否测试 True 测试环境 False 生产环境
-               * @return string
-               */
-              public static function wx_pc($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
+       /**
+        * 微信PC扫码
+        * @param $appId 应用Id
+        * @param $appKey 应用秘钥
+        * @param $mhtOrderNo 订单号
+        * @param $mhtOrderName 订单名
+        * @param $mhtOrderDetail 订单详细
+        * @param $mhtOrderAmt 订单金额单位分
+        * @param $mhtCurrencyType  商户订单币种类型
+        * @param $notifyUrl  商户后台通知URL
+        * @param $detail 商户商品列表
+        * @param $version 商品版本
+        * @param $frontNotifyUrl 商户前台通知URL
+        * @param $isTest 是否测试 True 测试环境 False 生产环境
+        * @return string
+        */
+       public static function wx_pc($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
 
            
 <h5 id='2.1.2'></h5>
        
-       - 支付宝PC扫码支付
+- 支付宝PC扫码支付
        
-             /**
-               * 支付宝PC扫码
-               * @param $appId 应用Id
-               * @param $appKey 应用秘钥
-               * @param $mhtOrderNo 订单号
-               * @param $mhtOrderName 订单名
-               * @param $mhtOrderDetail 订单详细
-               * @param $mhtOrderAmt 订单金额单位分
-               * @param $mhtCurrencyType  商户订单币种类型
-               * @param $notifyUrl  商户后台通知URL
-               * @param $detail 商户商品列表
-               * @param $version 商品版本
-               * @param $frontNotifyUrl 商户前台通知URL
-               * @param $isTest 是否测试 True 测试环境 False 生产环境
-               * @return string
-               */
-              public static function ali_pc($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
+      /**
+      * 支付宝PC扫码
+      * @param $appId 应用Id
+      * @param $appKey 应用秘钥
+      * @param $mhtOrderNo 订单号
+      * @param $mhtOrderName 订单名
+      * @param $mhtOrderDetail 订单详细
+      * @param $mhtOrderAmt 订单金额单位分
+      * @param $mhtCurrencyType  商户订单币种类型
+      * @param $notifyUrl  商户后台通知URL
+      * @param $detail 商户商品列表
+      * @param $version 商品版本
+      * @param $frontNotifyUrl 商户前台通知URL
+      * @param $isTest 是否测试 True 测试环境 False 生产环境
+      * @return string
+      */
+      public static functionali_pc($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
               
- <h5 id='2.1.3'></h5>
+
+<h5 id='2.1.3'></h5>
        
-       - 微信公众号支付
+- 微信公众号支付
             
-             /**
-             * 微信公众号
-             * @param $appId 应用Id
-             * @param $appKey 应用秘钥
-             * @param $mhtOrderNo 订单号
-             * @param $mhtOrderName 订单名
-             * @param $mhtOrderDetail 订单详细
-             * @param $mhtOrderAmt 订单金额单位分
-             * @param $mhtCurrencyType  商户订单币种类型
-             * @param $notifyUrl  商户后台通知URL
-             * @param $frontNotifyUrl 商户前台通知URL
-             * @param $isTest 是否测试 True 测试环境 False 生产环境
-             * @return string
-             */
-             public static function wx_p_account($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
+      /**
+      * 微信公众号
+      * @param $appId 应用Id
+      * @param $appKey 应用秘钥
+      * @param $mhtOrderNo 订单号
+      * @param $mhtOrderName 订单名
+      * @param $mhtOrderDetail 订单详细
+      * @param $mhtOrderAmt 订单金额单位分
+      * @param $mhtCurrencyType  商户订单币种类型
+      * @param $notifyUrl  商户后台通知URL
+      * @param $frontNotifyUrl 商户前台通知URL
+      * @param $isTest 是否测试 True 测试环境 False 生产环境
+      * @return string
+      */
+      public static function wx_p_account($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
            
- <h5 id='2.1.4'></h5>
-       - 支付宝手机网页
+
+<h5 id='2.1.4'></h5>
+
+ - 支付宝手机网页
  
-          /**
-          * 支付宝手机网页
-          * @param $appId 应用Id
-          * @param $appKey 应用秘钥
-          * @param $mhtOrderNo 订单号
-          * @param $mhtOrderName 订单名
-          * @param $mhtOrderDetail 订单详细
-          * @param $mhtOrderAmt 订单金额单位分
-          * @param $mhtCurrencyType  商户订单币种类型
-          * @param $notifyUrl  商户后台通知URL
-          * @param $detail 商户商品列表
-          * @param $version 商品版本
-          * @param $frontNotifyUrl 商户前台通知URL
-          * @param $isTest 是否测试 True 测试环境 False 生产环境
-          * @return string
-          */
-          public static function   ali_wap($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
+       /**
+       * 支付宝手机网页
+       * @param $appId 应用Id
+       * @param $appKey 应用秘钥
+       * @param $mhtOrderNo 订单号
+       * @param $mhtOrderName 订单名
+       * @param $mhtOrderDetail 订单详细
+       * @param $mhtOrderAmt 订单金额单位分
+       * @param $mhtCurrencyType  商户订单币种类型
+       * @param $notifyUrl  商户后台通知URL
+       * @param $detail 商户商品列表
+       * @param $version 商品版本
+       * @param $frontNotifyUrl 商户前台通知URL
+       * @param $isTest 是否测试 True 测试环境 False 生产环境
+       * @return string
+       */
+       public static function   ali_wap($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
       
            
    下单接口字段含义如下:

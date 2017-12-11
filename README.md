@@ -191,6 +191,7 @@
 |商户数据签名|mhtSignature|MAX64TEXT|Y|签名逻辑见接口见附录 3.1 [交易的 MD5 签名逻辑说明](#3.1)。除如下字段外，其它字段都参与MD5 签名。排除的有：funcode,deviceType,mhtSignType,mhtSignature|
 |商户商品列表|detail|String(500)|N|Json格式的商品列表，形如{"goods_detail":[<br>{<br>"goods_name": "iphone6s","quantity": 1},"goods_name": "iphone5s",<br>"quantity": 2]<br>}<br>元素名goods_detail，goods_name，quantity不可随意更改,==此字段不参与签名==|
 |商品版本|version|String(10)|N|商户商品版本<br>如1.0<br>==此字段不参与签名==|
+
 同步返回:
 
 |字段名称|字段 Key|格式|必填|备注|
@@ -281,11 +282,10 @@ responseCode=A001&tn=weixin%253A%252F%252Fwxpay%252Fbizpayurl%253Fpr%253DqcpVAy0
         public static function orederQuery($appId,$appKey,$mhtOrderNo,$isTest)
        
 
-订单查询接口字段含义如下:
 接口接入URL：https://pay.ipaynow.cn/             请求类型：POST
 
 |字段名称|字段 Key|格式|必填|备注|
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 |功能码|funcode|String(5)|Y|定值：MQ001|
 |商户应用唯一标识|appId|String(1,40)|Y|
 |商户订单号|mhtOrderNo|String(1,40)|Y|
@@ -297,7 +297,7 @@ responseCode=A001&tn=weixin%253A%252F%252Fwxpay%252Fbizpayurl%253Fpr%253DqcpVAy0
 返回数据：
 
 |字段名称|字段 Key|格式|必填|备注|
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 |商户应用唯一标识|appId|String(1,40)|Y|
 |商户订单号|mhtOrderNo|String(1,40)|Y|
 |商户商品名称|mhtOrderName|String(1,40)|Y|
@@ -390,6 +390,7 @@ responseCode=A001&tn=weixin%253A%252F%252Fwxpay%252Fbizpayurl%253Fpr%253DqcpVAy0
 |A004|订单受理成功|
 |A005|订单受理失败|
 
+<h5 id='3.4'></h5>
 3.4 币种列表
 
 |货币符号|货币名称|

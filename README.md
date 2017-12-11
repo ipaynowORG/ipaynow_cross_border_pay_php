@@ -29,15 +29,19 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 支付结果通知](#2.2)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 订单查询API](#2.3)
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 支付结果前台通知](#2.3)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[支付订单查询](#2.3.6)
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 订单查询API](#2.4)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 退款API](#2.4)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[支付订单查询](#2.4.1)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[退款](#2.4.1)
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 退款API](#2.5)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[退款查询](#2.4.2)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[退款](#2.5.1)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[退款查询](#2.5.2)
+
+[3. 接口附件说明](#3)
 
 <h2 id='1'> 1. 概述 </h2>
 <h4 id='1.1'> 1.1 简介 </h4>
@@ -164,195 +168,44 @@
            
    下单接口字段含义如下:
        
-   <table>
-               <tr>
-                   <th>字段名称</th>
-                   <th>字段Key</th>
-                   <th>备注</th>
-               </tr>
-               <tr>
-                   <td>功能码</td>
-                   <td>funcode</td>
-                   <td>定值：WP001</td>
-               </tr>
-                     <tr>
-                   <td>商户应用唯一标识</td>
-                   <td>appId</td>
-                   <td></td>
-                </tr>
-       <tr>
-                   <td>商户订单号</td>
-                   <td>mhtOrderNo</td>
-                   <td></td>
-                </tr>
-       <tr>
-                   <td>商户商品名称</td>
-                   <td>mhtOrderName</td>
-                   <td></td>
-                </tr>
-       <tr>
-                   <td>商户交易类型</td>
-                   <td>mhtOrderType</td>
-                   <td>01 普通消费</td>
-                </tr>
-       <tr>
-                   <td>商户订单币种类型</td>
-                   <td>mhtCurrencyType</td>
-                   <td>见 5.7 币种列表
-注：不能为 CNY</td>
-                </tr>
-       <tr>
-                   <td>商户订单交易金额</td>
-                   <td>mhtOrderAmt</td>
-                   <td>单位：分 整数，无小数点</td>
-                </tr>
-       <tr>
-                   <td>金额币种单位标记</td>
-                   <td>mhtAmtCurrFlag</td>
-                   <td>0: 订单金额单位为人民币<br>
-1：订单金额单位为外币
-（所传的币种类型）</td>
-                </tr>
-         <tr>
-                   <td>商户订单详情</td>
-                   <td>mhtOrderDetail</td>
-                   <td></td>
-                </tr>
-       <tr>
-                   <td>商户订单超时时间</td>
-                   <td>mhtOrderTimeOut</td>
-                   <td>60~3600秒，默认3600</td>
-                </tr>
-       <tr>
-                   <td>商户订单开始时间</td>
-                   <td>mhtOrderStartTime</td>
-                   <td>yyyyMMddHHmmss</td>
-                </tr>
-       <tr>
-                   <td>商户后台通知URL</td>
-                   <td>notifyUrl</td>
-                   <td>HTTP 协议或者 HTTPS 协
-议，POST 方式提交报文</td>
-       </tr>
-        <tr>
-                   <td>商户前台通知URL</td>
-                   <td>frontNotifyUrl</td>
-                   <td>HTTP 协议或者 HTTPS 协
-                    议，POST 方式提交报文
-                (渠道类型为 90 时，一定
-                    要传)</td>
-                </tr>
-       <tr>
-                   <td>商户字符编码</td>
-                   <td>mhtCharset</td>
-                   <td>UTF-8</td>
-                </tr>
-            <tr>
-                   <td>设备类型</td>
-                   <td>deviceType</td>
-                   <td>0600:公众号 06:手机网页 02:PC扫码</td>
-                </tr>
-       <tr>
-                   <td>渠道类型</td>
-                   <td>payChannelType</td>
-                   <td>90-支付宝 80-微信</td>
-        </tr>
-  <tr>
-                   <td>商户保留域</td>
-                   <td>mhtReserved</td>
-                   <td>(==非必填==)给商户使用的字段，商户可以对交易进行标记，现在支付将原样返回</td>
-                </tr>
-       <tr>
-                   <td>商户签名方法</td>
-                   <td>mhtSignType</td>
-                   <td>定值:MD5</td>
-                </tr>
-       <tr>
-                   <td>商户数据签名</td>
-                   <td>mhtSignature</td>
-                   <td>签名逻辑见接口见附录见 5.1 交易的 MD5签名逻辑说明。除如下字段外，其它字段都参与MD5 签名。排除的有：funcode,deviceType,mhtSignType,mhtSignature</td>
-                </tr>
-       <tr>
-                   <td>签名方法</td>
-                   <td>signType</td>
-                   <td>定值：MD5</td>
-                </tr>
-   <tr>
-                   <td>卡类型</td>
-                   <td>cardType</td>
-                   <td>(==非必填==)Json格式的商品列表，形如{"goods_detail": [ { "goods_name": "iphone6s","quantity": 1
-        }, {"goods_name": "iphone5s","quantity": 2}]} 元素名goods_detail，goods_name，quantity不可随意更改
-此字段不参与签名</td>
-        </tr>
-       <tr>
-                   <td>商品版本</td>
-                   <td>version</td>
-                   <td>(==非不填==)商户商品版本 如 1.0此字段不参与签名</td>
-        </tr>
-   </table>  
+|字段名称|字段 Key|格式|必填|备注|
+|----|----|----|----|----|
+|功能码|funcode|String(5)|Y|定值：WP001|
+|商户应用唯一标识|appId|String(1,40)|Y|
+|商户订单号|mhtOrderNo|String(1,40)|Y|
+|商户商品名称|mhtOrderName|String(1,40)|Y|
+|商户交易类型|mhtOrderType|String(1,40)|Y|01 普通消费|
+|商户订单币种类型|mhtCurrencyType|String (3)|Y|见 3.4 [币种列表](#3.4)注：不能为 CNY|
+|商户订单交易金额|mhtOrderAmt|Number(22)|Y|单位：分 整数，无小数点|
+|金额币种单位标记|mhtAmtCurrFlag|String(2)|Y|0: 订单金额单位为人民币 1：订单金额单位为外币（所传的币种类型）||
+|商户订单详情|mhtOrderDetail|String(0,200)|Y|
+|商户订单超时时间|mhtOrderTimeOut|Number(4)|N|60~3600 秒，默认 3600|
+|商户订单开始时间|mhtOrderStartTime|String (14)|Y|yyyyMMddHHmms|
+|商户后台通知 URL|notifyUrl|String(1,200)|Y|HTTP 协议或者 HTTPS 协议，POST 方式提交报文|
+|商户前台通知 URL|frontNotifyUrl|String(1,200)|N|HTTP 协议或者 HTTPS 协
+|商户字符编码|mhtCharset|String(1,16)|Y|UTF-8|
+|设备类型|deviceType|String(2)|Y|定值:0600:公众号 06:手机网页 02:PC扫码 |
+|渠道类型|payChannelType|String(2)|Y|90:支付宝 80:微信|
+|商户保留域|mhtReserved|String(100)|N|给商户使用的字段，商户可以对交易进行标记，现在支付将原样返回|
+|商户签名方法|mhtSignType|定值|Y|MD5|
+|商户数据签名|mhtSignature|MAX64TEXT|Y|签名逻辑见接口见附录 3.1 [交易的 MD5 签名逻辑说明](#3.1)。除如下字段外，其它字段都参与MD5 签名。排除的有：funcode,deviceType,mhtSignType,mhtSignature|
+|商户商品列表|detail|String(500)|N|Json格式的商品列表，形如{"goods_detail":[<br>{<br>"goods_name": "iphone6s","quantity": 1},"goods_name": "iphone5s",<br>"quantity": 2]<br>}<br>元素名goods_detail，goods_name，quantity不可随意更改,==此字段不参与签名==|
+|商品版本|version|String(10)|N|商户商品版本<br>如1.0<br>==此字段不参与签名==|
+同步返回:
 
-下单返回：
+|字段名称|字段 Key|格式|必填|备注|
+|---|---|---|---|---|---|
+|功能码|funcode|String(5)|Y|定值：WP001|
+|商户应用唯一标识|appId|String(1,40)|Y|
+|商户订单号|mhtOrderNo|String(1,40)|Y|
+|现在支付订单号|nowPayOrderNo|String(1,40)|Y|
+|短链接|tn|String(1,40)|N|
+|签名方法|signType|String(1,6)|Y|MD5|
+|响应时间|responseTime|String(14)|Y|yyyyMMddHHmmss|
+|响应码|responseCode|String(4)|Y|见附录 3.2  [响应码表](#3.2)|
+|响应信息|responseMsg|String(200)|N|错误时返回|
+|数据签名|signature|String(1,64)|Y|签名逻辑见接口附录说明 3.1 [交易的 MD5 签名逻辑说明](#3.1)。除如下字段外，其它字段都参与 MD5 签名。排除的有：signType,signature|
 
-       
-   <table>
-               <tr>
-                   <th>字段名称</th>
-                   <th>字段Key</th>
-                   <th>备注</th>
-               </tr>
-               <tr>
-                   <td>功能码</td>
-                   <td>funcode</td>
-                   <td>定值：WP001</td>
-               </tr>
-                     <tr>
-                   <td>商户应用唯一标识</td>
-                   <td>appId</td>
-                   <td></td>
-                </tr>
-       <tr>
-                   <td>商户订单号</td>
-                   <td>mhtOrderNo</td>
-                   <td></td>
-                </tr>
-       <tr>
-                   <td>现在支付订单号</td>
-                   <td>nowPayOrderNo</td>
-                   <td></td>
-                </tr>
-       <tr>
-                   <td>短链接</td>
-                   <td>tn</td>
-                   <td></td>
-                </tr>
-       <tr>
-                   <td>签名方法</td>
-                   <td>signType</td>
-                   <td>MD5</td>
-                </tr>
-       <tr>
-                   <td>响应时间</td>
-                   <td>responseTime</td>
-                   <td>yyyyMMddHHmmss</td>
-                </tr>
-       <tr>
-                   <td>响应码</td>
-                   <td>responseCode</td>
-                   <td>见附录 5.2 响应码表币</td>
-                </tr>
-         <tr>
-                   <td>响应信息</td>
-                   <td>responseMsg</td>
-                   <td>错误时返回</td>
-                </tr>
-       <tr>
-                   <td>数据签名</td>
-                   <td>signature</td>
-                   <td></td>
-                </tr>
-      
-   </table>  
-   
    同步返回示例：
 
 ```
@@ -371,8 +224,8 @@ responseCode=A001&tn=weixin%253A%252F%252Fwxpay%252Fbizpayurl%253Fpr%253DqcpVAy0
 |商户应用唯一标识|appId|String(1,40)|Y||
 |商户订单号|mhtOrderNo|String(1,40)|Y||
 |商户商品名称|mhtOrderName|String(1,40)|Y||
-|商户交易类型|mhtOrderType|String(2)|Y|见附录 5.6 交易类型表|
-|外币币种|mhtCurrencyType|String(3)|Y|见附录 5.7 币种列表|
+|商户交易类型|mhtOrderType|String(2)|Y|01 普通消费|
+|外币币种|mhtCurrencyType|String(3)|Y|见附录 3.4 [币种列表](#3.4)|
 |外币金额|mhtOrderAmt|Number(22)|Y|单位：分|
 |用户付款币种|cashCurrencyType|String(3)|Y||
 |用户付款金额|cashAmont|Number(22)|Y|单位：分|
@@ -380,165 +233,101 @@ responseCode=A001&tn=weixin%253A%252F%252Fwxpay%252Fbizpayurl%253Fpr%253DqcpVAy0
 |商户订单超时时间|mhtOrderTimeOut|Number(4)|N|60~3600 秒，默认 3600|
 |商户订单开始时间|mhtOrderStartTime|String(14)|Y|yyyyMMddHHmmss|
 |商户字符编码|mhtCharset|String(1,6)|Y|定值：UTF-8||
-|设备类型|deviceType|String(2)|Y|定值:0600 公众号|
-|渠道类型|payChannelType|String(2)|Y|见附录 5.5 渠道类型表|
+|设备类型|deviceType|String(2)|Y|定值:0600:公众号 06:手机网页 02:PC扫码 |
+|渠道类型|payChannelType|String(2)|Y|90:支付宝 80:微信|
 |现在支付流水号|nowPayOrderNo|String(0,64)|Y|现在支付订单号|
 |支付渠道号|channelOrderNo|String(0,18)|Y|渠道订单号|
-|交易支付状态|tradeStatus|String(4)|Y|见附录 5.3 交易状态表|
+|交易支付状态|tradeStatus|String(4)|Y|见附录 3.3  [交易状态表](#3.3)|
 |商户保留域|mhtReserved|String(100)|N|给商户使用的字段，商户可以对交易进行标记，现在支付将原样返回|
 |签名方法|signType|String(1,6)|Y|定值：MD5|
 |数据签名|signature|String(1,64)|Y|签名逻辑说明。除如下字段外，其它字段都参与 MD5 签名。排除的有：signType,signature|
+服务端通知接口接入注意事项：
 
+1、通知方式采用 HTTP POST 方式通知
+
+2、报文数据以字符串流的形式放在报文体中，所以直接 getParameter 是得不到数据的。
+
+<h4 id='2.3'>2.3 支付结果前台通知</h4>
+现在支付的服务端异步发起：通讯方式：HTTP POST
+
+|字段名称|字段 Key|格式|必填|备注|
+|----|----|----|----|----|
+|功能码|funcode|String(4)|Y|定值：N002|
+|商户应用唯一标识|appId|String(1,40)|Y|
+|商户订单号|mhtOrderNo|String(1,40)|Y|
+|现在支付订单号|nowPayOrderNo|String(1,40)|Y|
+|商户字符编码|mhtCharset|String(1,6)|Y|定值：UTF-8|
+|交易支付状态|tradeStatus|String(4)|Y|见附录 3.3  [交易状态表](#3.3)|
+|商户保留域|mhtReserved|String(100)|N|UrlEncode 后的值返回注：接收后请先UrlDecode，再进行验签|
+|签名方法|signType|String(1,6)|Y|定值：MD5|
+|数据签名|signature|String(1,64)|Y|签名逻辑见接口见附录 3.1 [交易的 MD5 签名逻辑说明](#3.1)。除如下字段外，其它字段都参与MD5 签名。排除的有：signType,signature。|
 
            
-<h4 id='2.3'> 2.3 订单查询API </h4>
+<h4 id='2.4'> 2.4 订单查询API </h4>
 订单查询：OrderQueryService.php
 
-<h5 id='2.3.1'></h5>
+<h5 id='2.4.1'></h5>
 
-- 用户主扫支付订单查询
+- 跨境支付订单查询
 
         /**
-         * 主扫支付查询
+         * 跨境支付查询
          * @param $appId
          * @param $appKey
          * @param $mhtOrderNo
          * @return string
          * @param $isTest 是否测试 True 测试环境 False 生产环境
          */
-        public static function orederQuery08($appId,$appKey,$mhtOrderNo,$isTest)
+        public static function orederQuery($appId,$appKey,$mhtOrderNo,$isTest)
        
-<h5 id='2.3.2'></h5>
-
-- 用户被扫支付订单查询
-
-        /**
-         * 被扫支付查询
-         * @param $appId
-         * @param $appKey
-         * @param $mhtOrderNo
-         * @param $isTest 是否测试 True 测试环境 False 生产环境
-         * @return string
-         */
-        public static function orederQuery05($appId,$appKey,$mhtOrderNo,$isTest)
-        
-<h5 id='2.3.3'></h5>
-
-- 公众号支付订单查询
-
-        /**
-         * 公众号支付查询
-         * @param $appId
-         * @param $appKey
-         * @param $mhtOrderNo
-         * @param $isTest 是否测试 True 测试环境 False 生产环境
-         * @return string
-         */
-        public static function orederQuery0600($appId,$appKey,$mhtOrderNo,$isTest)
-        
-<h5 id='2.3.4'></h5>
-
-- H5支付订单查询
-
-       /**
-       * H5支付查询
-       * @param $appId
-       * @param $appKey
-       * @param $mhtOrderNo
-       * @param $isTest 是否测试 True 测试环境 False 生产环境
-       * @return string
-       */
-       public static function orederQuery0601($appId,$appKey,$mhtOrderNo,$isTest)
-
-        
-<h5 id='2.3.5'></h5>
-
-- 网页支付订单查询
-
-      /**
-       * web支付查询
-       * @param $appId
-       * @param $appKey
-       * @param $mhtOrderNo
-       * @param $isTest 是否测试 True 测试环境 False 生产环境
-       * @return string
-      */
-      public static function orederQuery04($appId,$appKey,$mhtOrderNo,$isTest)
-
-<h5 id='2.3.6'></h5>
-
-- 小程序支付订单查询
-
-        /**
-         * 小程序支付查询
-         * @param $appId
-         * @param $appKey
-         * @param $mhtOrderNo
-         * @param $isTest 是否测试 True 测试环境 False 生产环境
-         * @return string
-         */
-        public static function orederQuery14($appId,$appKey,$mhtOrderNo,$isTest)
-
 
 订单查询接口字段含义如下:
 接口接入URL：https://pay.ipaynow.cn/             请求类型：POST
 
-<table>
-        <tr>
-            <th>字段名称</th>
-            <th>字段Key</th>
-            <th>备注</th>
-        </tr>
-        <tr>
-            <td>功能码</td>
-            <td>funcode</td>
-            <td>定值：MQ002</td>
-        </tr>
-        <tr>
-            <td>接口版本号</td>
-            <td>version</td>
-            <td>定值：1.0.0</td>
-         </tr>
-           <tr>
-            <td>商户应用唯一标识</td>
-            <td>appId</td>
-            <td></td>
-         </tr>
-        <tr>
-            <td>设备类型</td>
-            <td>deviceType</td>
-            <td></td>
-         </tr>
-        <tr>
-            <td>商户订单号</td>
-            <td>mhtOrderNo</td>
-            <td></td>
-         </tr>
-        <tr>
-            <td>商户字符集</td>
-            <td>mhtCharset</td>
-            <td>定值：UTF-8</td>
-         </tr>
-        <tr>
-            <td>签名方法</td>
-            <td>mhtSignType</td>
-            <td>定值：MD5</td>
-         </tr>
-        <tr>
-            <td>数据签名</td>
-            <td>mhtSignature</td>
-            <td>除mhtSignature字段外，所有参数都参与MD5签名。</td>
-         </tr>
-    </table>
+|字段名称|字段 Key|格式|必填|备注|
+|---|---|---|---|---|---|
+|功能码|funcode|String(5)|Y|定值：MQ001|
+|商户应用唯一标识|appId|String(1,40)|Y|
+|商户订单号|mhtOrderNo|String(1,40)|Y|
+|商户字符集|mhtCharset|String(1,6)|Y|UTF-8|
+|签名方法|mhtSignType|String(1,6)|Y|MD5|
+|数据签名|mhtSignature|String(1,64)|Y|其它字段都参与 MD5 签|
+
+
+返回数据：
+
+|字段名称|字段 Key|格式|必填|备注|
+|---|---|---|---|---|---|
+|商户应用唯一标识|appId|String(1,40)|Y|
+|商户订单号|mhtOrderNo|String(1,40)|Y|
+|商户商品名称|mhtOrderName|String(1,40)|Y|
+|订单交易类型|mhtOrderType|String(2)|Y|01:普通消费|
+|外币币种|mhtCurrencyType|String(3)|Y|见附录 3.4 [币种列表](#3.4)|
+|外币金额|mhtOrderAmt|Number(22)|Y|单位：分|
+|用户付款币种|cashCurrencyType|String(3)|Y|
+|用户付款金额|cashAmont|Number(22)|Y|单位：分|
+|金额币种单位标记|mhtAmtCurrFlag|String(2)|Y|0: 订单金额单位为人民币 1：订单金额单位为所传的币种类型|
+|订单超时时间|mhtOrderTimeOut|Number(4)|N|60~3600 秒，默认 3600|
+|订单开始时间|mhtOrderStartTime|String(14)|Y|yyyyMMddHHmmss|
+|交易字符编码|mhtCharset|String(1,6)|Y|UTF-8|
+|设备类型|deviceType|String(2)|Y|定值:0600:公众号 06:手机网页 02:PC扫码 |
+|用户所选渠道类型|payChannelType|String(2)|Y|90:支付宝 80:微信表|
+|交易状态|tradeStatus|String(4)|Y|见附录 3.3  [交易状态表](#3.3)|
+|现在支付流水号|nowPayOrderNo|String(0,64)|Y|现在支付订单号|
+|支付渠道号|channelOrderNo|String(0,18)|Y|渠道订单号|
+|响应时间|responseTime|String(14)|Y|yyyyMMddHHmmss|
+|响应码|responseCode|String(4)|Y|见附录 3.2  [响应码表](#3.2)|
+|响应信息|responseMsg|String(1,100)|N|错误原因|
+|签名方法|signType|String(1,6)|Y|MD5|
+|数据签名|signature|String(1,64)|Y|签名逻辑见接口附录 3.1 [交易的 MD5 签名逻辑说明](#3.1)。除如下字段外，其它字段都参与 MD5 签名。排除的有：signType,signature|
         
         
-<h4 id='2.4'> 2.4 退款API </h4>
+<h4 id='2.5'> 2.5 退款API </h4>
     RefundService.php
 
-<h5 id='2.4.1'></h5>
+<h5 id='2.5.1'></h5>
 
 - 退款
-
        
         /**
          * 退款接口
@@ -553,7 +342,7 @@ responseCode=A001&tn=weixin%253A%252F%252Fwxpay%252Fbizpayurl%253Fpr%253DqcpVAy0
          */
         public static function refund($appId,$appKey,$mhtOrderNo,$mhtRefundNo,$amount,$reason,$isTest)
 
-<h5 id='2.4.2'></h5>
+<h5 id='2.5.2'></h5>
 
 - 退款查询
 
@@ -567,5 +356,60 @@ responseCode=A001&tn=weixin%253A%252F%252Fwxpay%252Fbizpayurl%253Fpr%253DqcpVAy0
           */
          public static function refundQuery($appId,$appKey,$mhtRefundNo,$isTest)
 
-<h5 id='2.4.3'></h5
-         
+<h5 id='3'></h5>
+3 接口附录说明
+
+<h5 id='3.1'></h5>
+3.1 交易的 MD5 签名逻辑
+
+第一步：对参与 MD5 签名的字段按字典升序排序后，分别取值后并排除值为空的字段键值对，
+最后组成 key1=value1&key2=value2....keyn=valuen	"表单字符串"。
+
+第二步：对 MD5 密钥进行加密得到"密钥 MD5 值"。
+
+第三步：最后对 第一步中得到的表单字符串&第二步得到的密钥 MD5 值 做 MD5 签名 PS : MD5密钥是用户在注册应用的时候生成的， 每个应用一个 MD5 密钥。
+
+<h5 id='3.2'></h5>
+3.2 交易响应码表
+
+|响应码|含义|
+|----|----|
+|A001|支付成功|
+|A002|支付失败|
+|A003|未知状态|
+
+<h5 id='3.3'></h5>
+3.3 交易支付状态表
+
+|响应码|含义|
+|----|----|
+|A00I|订单未处理|
+|A001|订单支付成功|
+|A002|订单支付失败|
+|A003|支付结果未知|
+|A004|订单受理成功|
+|A005|订单受理失败|
+
+3.4 币种列表
+
+|货币符号|货币名称|
+|---|---|
+|GBP|英镑|
+|HKD|港币|
+|USD|美元|
+|CHF|瑞士法郎|
+|SGD|新加坡元|
+|SEK|瑞典克朗|
+|DKK|丹麦克朗|
+|NOK|挪威克朗|
+|JPY|日元|
+|CAD|加拿大元|
+|AUD|澳大利亚元|
+|EUR|欧元|
+|NZD|新西兰元|
+|RUB|俄罗斯卢布|
+|MOP|澳门元|
+|KRW|韩币|
+|THB|泰铢|
+|TWD|台币|
+|IDR|印尼卢比|

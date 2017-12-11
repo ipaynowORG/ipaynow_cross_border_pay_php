@@ -29,19 +29,27 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 支付结果通知](#2.2)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2 支付结果前台通知](#2.3)
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 支付结果前台通知](#2.3)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 订单查询API](#2.4)
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 订单查询API](#2.4)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[支付订单查询](#2.4.1)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 退款API](#2.5)
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 退款API](#2.5)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[退款](#2.5.1)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[退款查询](#2.5.2)
 
 [3. 接口附件说明](#3)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[3.1 交易的 MD5 签名逻辑](#3.1)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[3.2 交易响应码表](#3.2)
+
+&nbsp;&nbsp;&nbsp;&nbsp;[3.3 币种列表](#3.3)
+
+
 
 <h2 id='1'> 1. 概述 </h2>
 <h4 id='1.1'> 1.1 简介 </h4>
@@ -75,10 +83,9 @@
      cd 进入example文件夹
      运行 TradeTest.php
 
-## 2. API ##
-<h4 id='2.1'> 2.1 跨境聚合交易API </h4>
+<h2 id=2> 2. API </h2>
 
-### 2.1 工具说明 ###
+<h4 id='2.1'> 2.1 跨境聚合交易API </h4>
 
 - 下单接口
     * TradeService.php  
@@ -103,8 +110,9 @@
                * @return string
                */
               public static function wx_pc($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
+
            
-       <h5 id='2.1.2'></h5>
+<h5 id='2.1.2'></h5>
        
        - 支付宝PC扫码支付
        
@@ -125,6 +133,7 @@
                * @return string
                */
               public static function ali_pc($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
+              
        <h5 id='2.1.3'></h5>
        
        - 微信公众号支付
@@ -146,6 +155,7 @@
              public static function wx_p_account($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
            
        <h5 id='2.1.4'></h5>
+       - 支付宝手机网页
  
           /**
           * 支付宝手机网页

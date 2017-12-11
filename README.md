@@ -134,7 +134,7 @@
                */
               public static function ali_pc($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
               
-       <h5 id='2.1.3'></h5>
+ <h5 id='2.1.3'></h5>
        
        - 微信公众号支付
             
@@ -154,7 +154,7 @@
              */
              public static function wx_p_account($appId,$appKey,$mhtOrderNo,$mhtOrderName,$mhtOrderDetail,$mhtOrderAmt,$mhtCurrencyType,$notifyUrl,$frontNotifyUrl,$detail,$version,$isTest=true)
            
-       <h5 id='2.1.4'></h5>
+ <h5 id='2.1.4'></h5>
        - 支付宝手机网页
  
           /**
